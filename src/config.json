@@ -1,0 +1,22 @@
+{
+  "device": "/dev/ttyUSB3",  //GSM设备号
+  "baudrate": 115200,    //GSM设备频率
+  "sleep": 5,            //出现错误时的休眠时间
+  "sendmail": false,     //是否以发送邮件方式推送收到的短消息
+  "mailfrom": "12345678@qq.com",  //发送邮箱账号
+  "mailto": "12345678@qq.com",    //接收邮箱账号
+  "mailpass": "alksdjfiqwuyrasjdf",  //随机生成的应用口令
+  "mailserver": "smtp.qq.com",     //发送邮件服务器
+  "mailserverport": 587,           //发送邮件服务器端口
+  "sendwx": true,                  //是否以微信小程序方式推送短消息
+  "wxcorpid": "wwc99f328ac88hasjdhf1c", //企业微信ID
+  "wxcorpsecret": "alksdjfklajsdflkajsdlfkjalskdfjl", //企业微信密钥
+  "wxagentid": 1000011,  //企业微信小程序编号
+  "wxuser": "HAHAHAHHAHA",  //能够接收消息的用户
+  "checkcputemp": true,  //是否检测CPU温度
+  "tempinterval": 10,   //温度检测间隔时间
+  "cpufanstart":  55,   //启动风扇时间
+  "cpufanconpin": 21,   //控制风扇开关的GPIO pin脚编号
+  "cputempfile": "/sys/class/thermal/thermal_zone0/temp" //保存CPU温度的文件完整路径
+}
+
