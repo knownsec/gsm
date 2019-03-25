@@ -14,7 +14,7 @@
   "wxagentid": 1000011,  //企业微信小程序编号
   "wxuser": "HAHAHAHHAHA",  //能够接收消息的用户
   "checkcputemp": true,  //是否检测CPU温度
-  "tempinterval": 10,   //温度检测间隔时间
+  "tempinterval": 10,   //温度检测间隔时间，以分钟为单位
   "cpufanstart":  55,   //启动风扇时间
   "cpufanconpin": 21,   //控制风扇开关的GPIO pin脚编号
   "cputempfile": "/sys/class/thermal/thermal_zone0/temp" //保存CPU温度的文件完整路径
