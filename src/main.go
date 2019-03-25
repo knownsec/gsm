@@ -42,7 +42,7 @@ type Config struct {
 	CheckCpuTemp   bool    `json:"checkcputemp"`
 	TempInterval   uint    `json:"tempinterval"`
 	CPUFanStart    float32 `json:"cpufanstart"`
-	CPUFanConPin   uint    `json:"coufanconpin"`
+	CPUFanConPin   uint    `json:"cpufanconpin"`
 	CPUTempFile    string  `json:"cputempfile"`
 	SendWX         bool    `json:"sendwx"`
 	WxCorpid       string  `json:"wxcorpid"`
