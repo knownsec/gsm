@@ -163,7 +163,7 @@ func control_cpu_fan(cpu_temp_file string, timeout time.Duration, cpu_temp float
 		if diff_num < -5 {
 			fan_contrl.Low()
 		}
-		time.Sleep(timeout * time.Second)
+		time.Sleep(timeout * time.Minute)
 	}
 
 }
@@ -296,7 +296,7 @@ func main() {
 	wg.Add(1)
 
 	if config.CheckCpuTemp {
-		go control_cpu_fan(config.CPUTempFile, 600, config.CPUFanStart)
+		go control_cpu_fan(config.CPUTempFile, time.Duration(config.TempInterval), config.CPUFanStart)
 	}
 
 	go get_message(msg_bus)
