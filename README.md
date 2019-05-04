@@ -21,6 +21,7 @@
 * 移远EC20 淘宝价格：150-200 RMB
 * 4G模块Mini-PCIE转USB转接板 淘宝价格：20RMB
 * 4G天线           淘宝价格：5RMB
+* ESP8266(IoT)         淘宝价格: 20RMB
 
 ---
 
@@ -69,6 +70,22 @@ $ ./gsm-arm config.json
   "cpufanstart":  55,   //启动风扇温度值
   "cpufanconpin": 21,   //控制风扇开关的GPIO pin脚编号
   "cputempfile": "/sys/class/thermal/thermal_zone0/temp" //保存CPU温度的文件完整路径
+  
+  "aeskey": "akjsdflkjasdlkfjal;skdjflkasdjflkajsdf",  //对应微信接收消息的EncodingAESKey加密密钥
+  "token": "aklsdjflkajsdflk;jasdlkfjlaksdjf", //对应微信接收消息的token
+  "secretword": "aslkdfjlaksdjflkajsdf;cf1e",  //中转服务器的验证口令
+  "headerserver": "nginx",                    //中转服务器伪装为何种服务器信息
+  "fakebody": "<html><body><h1>It works!</h1></body></html>",  //中转服务器伪装页面
+  "targeturl": "https://88.88.88.88/",  //对应微信接收消息的中转服务器URL
+  "bdyykey": "asdkfjlkjLKJDLKSDJF",     //百度AI语音识别 key
+  "bdyysecret": "SKLDJFKLSJDFSlkajsdfkljalsdjf",  //百度AI语音识别 secret
+  "cuid": "f123sadfj23234",    //百度AI语音识别ID
+  "port": 443,                 //中转服务器开放端口
+  "ssl": true,                 //中转服务器是否是https
+  "checkurl": "/check",        //中转服务器校验URL
+  "certfile": "./server.pem",  
+  "keyfile": "./server.key",
+  "cmdfile": "/tmp/test.txt"  //扩展指令文件路径
 }
 ```
 QQ邮箱建立授权码的方法如下：
@@ -86,6 +103,18 @@ QQ邮箱建立授权码的方法如下：
 在建立好的企业微信当中可以建立一个自建应用
 
 [企业自建应用](https://open.work.weixin.qq.com/wwopen/helpguide/detail?t=selfBuildApp)
+
+企业应用开启接收消息
+
+[企业应用接收消息](https://work.weixin.qq.com/api/doc#90000/90135/90237)
+
+百度AI开放平台
+
+[百度AI开放平台](https://ai.baidu.com/)
+
+百度语音识别
+
+[百度语音识别](https://ai.baidu.com/docs#/ASR-API/top)
 
 三极管控制风扇参考
 
@@ -108,7 +137,7 @@ EC20 AT指令手册
 * 编译好的二进制程序持续运行加入进rc.local文件，如果使用了4G模块，建议sleep 10秒以上，不然有极大概率会启动失败，怀疑是硬件本身没有初始化好设备文件导致的。
 
 ### **可扩展功能**
-* 目前是单向的传输收到的短信信息，可以利用微信应用的交互功能，远程外网控制家里的设备，比如：硬盘或主机的开关机，文件的下载。
+* 目前硬盘或主机的开关机，文件的下载, IoT的控制以及发送短信,拨打电话都已经实现。
 * 目前测试通过的是QQ邮箱，其他邮箱应该是同理的，需要做测试。
-* 应该可以跑在梅林固件和openwrt环境当中，需要注意CPU类型
+* 经过验证,目前已经可以跑在jetson nano上了,不过需要定制内核并重新编译
 
