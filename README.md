@@ -24,7 +24,7 @@
 
 **IoT开发模块**
 
-* ESP8266(IoT)		淘宝价格: 20RMB
+* ESP8266(IoT)      淘宝价格: 20RMB
 * 温湿度传感器DHT11   淘宝价格: 5-10RMB
 
 ---
@@ -94,7 +94,8 @@ $ ./gsm-arm config.json
   "cmdfile": "/tmp/test.txt"  //扩展指令文件路径
 }
 ```
-针对config.json中的 * cmdfile * 的配置文件信息说明如下：
+
+针对config.json中的cmdfile的配置文件信息说明如下：
 
 ```
 开灯::http://192.168.1.14/led/on
@@ -102,7 +103,9 @@ $ ./gsm-arm config.json
 温度::http://192.168.1.14/temp
 湿度::http://192.168.1.14/humi
 ```
-以 * :: * 为分隔符,其中的IP地址为ESP8266连接WIFI获得的IP地址,可以自行扩展指令
+以::为分隔符,其中的IP地址为ESP8266连接WIFI获得的IP地址,可以自行扩展指令
+
+
 
 QQ邮箱建立授权码的方法如下：
 
