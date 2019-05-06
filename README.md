@@ -21,7 +21,11 @@
 * 移远EC20 淘宝价格：150-200 RMB
 * 4G模块Mini-PCIE转USB转接板 淘宝价格：20RMB
 * 4G天线           淘宝价格：5RMB
-* ESP8266(IoT)         淘宝价格: 20RMB
+
+**IoT开发模块**
+
+* ESP8266(IoT)		淘宝价格: 20RMB
+* 温湿度传感器DHT11   淘宝价格: 5-10RMB
 
 ---
 
@@ -43,6 +47,8 @@ $ ./gsm-arm config.json
 其中，项目中需要一些相应的库，但是因为众所周知的原因，在国内很难把它们下载回来，所以我把它们打包成了项目里面的vendor.tar.gz ，在执行初始化的时候展开。
 
 如果需要判定是否是硬件模块的原因，可以使用 `minicom -D /dev/ttyUSB3 -b 115200`，在其中的界面当中执行 AT指令进行指令测试判定。
+
+
 
 
 
@@ -88,6 +94,16 @@ $ ./gsm-arm config.json
   "cmdfile": "/tmp/test.txt"  //扩展指令文件路径
 }
 ```
+针对config.json中的 * cmdfile * 的配置文件信息说明如下：
+
+```
+开灯::http://192.168.1.14/led/on
+关灯::http://192.168.1.14/led/off
+温度::http://192.168.1.14/temp
+湿度::http://192.168.1.14/humi
+```
+以 * :: * 为分隔符,其中的IP地址为ESP8266连接WIFI获得的IP地址,可以自行扩展指令
+
 QQ邮箱建立授权码的方法如下：
 
 [QQ邮箱帮助](https://service.mail.qq.com/cgi-bin/help?subtype=1&id=28&no=1001256)
@@ -128,6 +144,18 @@ EC20 AT指令手册
 
 [AT指令手册](https://docs-asia.electrocomponents.com/webdocs/147d/0900766b8147dbbc.pdf)
 
+ESP8266烧录
+
+[烧录过程](https://www.wandianshenme.com/play/esptooolpy-flash-espeasy-firmware/)
+
+ESP8266固件
+
+[固件申领](https://nodemcu-build.com/)
+
+ESP8266 httpserver
+
+[ESP8266 httpserver](https://github.com/wangzexi/NodeMCU-HTTP-Server.git)
+
 
 ### **问题**
 
@@ -135,6 +163,8 @@ EC20 AT指令手册
 * 从个人的使用效果来看，极力推荐使用4G模块，因为不论是从性能上，还是稳定性以及安全角度来看，4G模块都是首选选择，其次建议购买天线。
 * SIM900A的AT指令与EC20的指令有些细节点上不一样，需要修改一下代码，我将会在代码当中注释出来
 * 编译好的二进制程序持续运行加入进rc.local文件，如果使用了4G模块，建议sleep 10秒以上，不然有极大概率会启动失败，怀疑是硬件本身没有初始化好设备文件导致的。
+* 腾讯的语音识别在企业版免费应用上未开通,只能使用百度的,总体感觉百度的语音识别相对腾讯要稍差一些.
+* ESP8266 是一个很不错的IoT开发模块,推荐大家购买
 
 ### **可扩展功能**
 * 目前硬盘或主机的开关机，文件的下载, IoT的控制以及发送短信,拨打电话都已经实现。
