@@ -8,27 +8,43 @@ if [ ! -f install ]; then
 	echo 'install must be run within its container folder' 1>&2
 	exit 1
 fi
-PN="gsm"
+
 CURDIR=`pwd`
 cd $CURDIR
 OLDGOPATH="$GOPATH"
 export GOPATH="$CURDIR/vendor:$CURDIR"
-gofmt -w src
-cd src
-if [ $# = 0 ]; then
-	go build -ldflags="-s -w"  -o "../bin/$PN"
-elif [ $# = 1 ]; then
+
+if [ ! -d src ]; then
+	gofmt -w src
+fi
+
+
+if [ $# = 1 ]; then
 	case $1 in
 		init) cd $CURDIR;extract;mkdir -p src bin dat pkg;;
         clean) cd $CURDIR;rm -rf vendor bin dat pkg;;
-		mips) go get;CGO_ENABLED=0 GOOS=linux GOARCH=mips go build -ldflags="-s -w"  -o "../bin/$PN-mips";;
-		mipsle) go get;CGO_ENABLED=0 GOOS=linux GOARCH=mipsle go build -ldflags="-s -w"  -o "../bin/$PN-mipsle";;
-		arm) go get;CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=5 go build -ldflags="-s -w"  -o "../bin/$PN-arm";;
-		linux) go get;CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w"  -o "../bin/$PN-lin64";;
-		lin86) go get;CGO_ENABLED=0 GOOS=linux GOARCH=386 go build -ldflags="-s -w"  -o "../bin/$PN-lin86";;
 	esac
 fi
 
+if [ $# = 2 ]; then
+	cd "src"
+	cp "./test/$2.go" main.go
+	case $1 in 
+		local) go get;CGO_ENABLED=0 go build -ldflags="-s -w"  -o "$CURDIR/bin/$2-local";;
+		mips) go get;CGO_ENABLED=0 GOOS=linux GOARCH=mips go build -ldflags="-s -w"  -o "$CURDIR/bin/$2-mips";;
+		mipsle) go get;CGO_ENABLED=0 GOOS=linux GOARCH=mipsle go build -ldflags="-s -w"  -o "$CURDIR/bin/$2-mipsle";;
+		arm) go get;CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=5 go build -ldflags="-s -w"  -o "$CURDIR/bin/$2-arm";;
+		arm64) go get;CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -ldflags="-s -w"  -o "$CURDIR/bin/$2-arm64";;
+		linux) go get;CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w"  -o "$CURDIR/bin/$2-lin64";;
+		lin86) go get;CGO_ENABLED=0 GOOS=linux GOARCH=386 go build -ldflags="-s -w"  -o "$CURDIR/bin/$2-lin86";;
+		win64) go get;CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"  -o "$CURDIR/bin/$2-win64";;
+		win32) go get;CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -ldflags="-s -w"  -o "$CURDIR/bin/$2-win32";;
+    esac
+	echo "build ok ...."
+fi
+if [ ! -f main.go ]; then
+	rm -rf main.go
+fi
+
 export GOPATH="$OLDGOPATH"
-echo "build ok ...."
 
