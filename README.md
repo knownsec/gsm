@@ -135,7 +135,7 @@ QQ邮箱建立授权码的方法如下：
 
 百度语音识别
 
-[百度语音识别](https://ai.baidu.com/docs#/ASR-API/top)
+[百度语音识别](https://ai.baidu.com/docs#/ASR-API/top)
 
 三极管控制风扇参考
 
