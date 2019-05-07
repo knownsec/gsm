@@ -1,0 +1,1 @@
+{"port": 443, "ssl": true,"checkurl":"/checkurl","certfile":"./server.pem","keyfile":"./server.key", "aeskey": "xxxxxxxxxxxxxxxxxxxxx", "token":"xxxxxxxxxxxxxxxxxxxxxxxx", "secretword": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "headerserver": "nginx", "fakebody": "<html><body><h1>It works!</h1></body></html>"}

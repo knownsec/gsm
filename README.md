@@ -38,11 +38,17 @@ $ export GOPATH=./gopath
 $ git clone https://github.com/rungobier/gsm.git
 $ cd gsm
 $ ./install init  #编译环境环境初始化
-$ ./install arm   #编译出树莓派版本
+$ ./install arm  gsm  #编译出树莓派控制中心版本
+$ ./install linux  wxs  #编译出微信外网服务器64位版本
+$ scp ./bin/wxs-lin64 <公网VPS实际路径下>
+$ scp ./wxs-config.json <公网VPS实际路径下>
 $ scp ./bin/gsm-arm <树莓派实际路径下>
-$ scp ./src/config.json <树莓派实际路径下>
+$ scp ./src/gsm-config.json <树莓派实际路径下>
+## 配置好文件后可以继续后续操作
 【树莓派系统下操作】
-$ ./gsm-arm config.json
+$ ./gsm-arm gsm-config.json
+【公网VPS系统下操作】
+$ ./wxs-lin64 wxs-config.json
 ```
 其中，项目中需要一些相应的库，但是因为众所周知的原因，在国内很难把它们下载回来，所以我把它们打包成了项目里面的vendor.tar.gz ，在执行初始化的时候展开。
 
@@ -53,7 +59,7 @@ $ ./gsm-arm config.json
 
 
 ### **如何配置**
-针对config.json的配置文件信息说明如下:
+针对*-config.json的配置文件信息说明如下:
 
 ```
 {
@@ -89,8 +95,8 @@ $ ./gsm-arm config.json
   "port": 443,                 //中转服务器开放端口
   "ssl": true,                 //中转服务器是否是https
   "checkurl": "/check",        //中转服务器校验URL
-  "certfile": "./server.pem",  
-  "keyfile": "./server.key",
+  "certfile": "./server.pem",  //证书文件
+  "keyfile": "./server.key",   //证书文件
   "cmdfile": "/tmp/test.txt"  //扩展指令文件路径
 }
 ```
